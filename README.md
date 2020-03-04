@@ -29,9 +29,18 @@ Here,
 
 
 ```python
-# Generate a random normal variable with given parameters , n=5000
+import numpy as np
+import seaborn as sns
+mu, sigma = 14, 2.8
+n = 5000
+s = np.random.normal(mu, sigma, n)
+sns.distplot(s);
 
 ```
+
+    C:\Users\FlatIron_User\.conda\envs\learn-env\lib\site-packages\scipy\stats\stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+      return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
+    
 
 ## Calculate a normalized histogram for this distribution in matplotlib, with bin size = 20
 
@@ -40,7 +49,11 @@ Make sure to get the bin positions and counts for each of the obtained bins. You
 
 ```python
 # Calculate a histogram for above data distribution
-
+import matplotlib.pyplot as plt
+count, bins, ignored = plt.hist(s, 20, density=True)
+plt.ylabel('Count')
+plt.title('Histogram')
+plt.show()
 ```
 
 
@@ -52,7 +65,7 @@ Make sure to get the bin positions and counts for each of the obtained bins. You
 
 ```python
 # Calculate the normal Density function 
-density = None
+density = 1/(sigma * np.sqrt(2 * np.pi)) * np.exp( - (bins - mu)**2 / (2 * sigma**2))
 ```
 
 ## Plot the histogram and density function
@@ -60,7 +73,11 @@ density = None
 
 ```python
 # Plot histogram along with the density function
-
+count, bins, ignored = plt.hist(s, 20, density=True)
+plt.plot(bins,density)
+plt.ylabel('Count')
+plt.title('Histogram')
+plt.show()
 ```
 
 
@@ -72,7 +89,7 @@ density = None
 
 ```python
 # Use seaborn to plot the histogram with KDE
-
+import s
 ```
 
 
